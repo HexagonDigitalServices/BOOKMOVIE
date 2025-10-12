@@ -127,8 +127,6 @@ const Trailers = () => {
                   </div>
 
 
-
-
      <iframe
                       className={trailersStyles.videoIframe}
                       src={buildIframeSrc(featuredTrailer.videoUrl)}
@@ -139,7 +137,16 @@ const Trailers = () => {
                       ref={videoRef}
                     />
 
-
+                            {featuredTrailer.credits &&
+                      Object.entries(featuredTrailer.credits).map(([role, person]) => (
+                        <div key={role} className={trailersStyles.creditItem}>
+                          <div className={trailersStyles.creditImage}>
+                            <img src={person.image} alt={person.name} className={trailersStyles.creditImageSrc} loading="lazy" />
+                          </div>
+                          <div className={trailersStyles.creditName}>{person.name}</div>
+                          <div className={trailersStyles.creditRole}>{role}</div>
+                        </div>
+                      ))}
   
 };
 
