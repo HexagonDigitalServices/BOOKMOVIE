@@ -103,6 +103,44 @@ const Trailers = () => {
   };
 
 
+
+  <div
+                    key={trailer.id}
+                    data-id={trailer.id}
+                    className={`${trailersStyles.carouselItem.base} ${
+                      featuredTrailer.id === trailer.id ? trailersStyles.carouselItem.active : trailersStyles.carouselItem.inactive
+                    }`}
+                    style={{ width: "220px", height: "124px", minWidth: "220px" }}
+                    onClick={() => selectTrailer(trailer)}
+                    role="button"
+                    tabIndex={0}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" || e.key === " ") selectTrailer(trailer);
+                    }}
+                    aria-pressed={featuredTrailer.id === trailer.id}
+                  >
+                    <img src={trailer.thumbnail} alt={trailer.title} className={trailersStyles.carouselImage} loading="lazy" />
+                    <div className={trailersStyles.carouselOverlay}>
+                      <h3 className={trailersStyles.carouselTitle}>{trailer.title}</h3>
+                      <p className={trailersStyles.carouselGenre}>{trailer.genre}</p>
+                    </div>
+                  </div>
+
+
+
+
+     <iframe
+                      className={trailersStyles.videoIframe}
+                      src={buildIframeSrc(featuredTrailer.videoUrl)}
+                      title={featuredTrailer.title}
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      ref={videoRef}
+                    />
+
+
+  
 };
 
 export default Trailers;
