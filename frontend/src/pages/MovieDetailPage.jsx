@@ -359,7 +359,7 @@ export default function MovieDetailPage() {
         );
       })()}
     </div>
-  </div>;
+  </div>
 
   {
     /* Producer */
@@ -392,5 +392,5 @@ export default function MovieDetailPage() {
         {movie.producer?.name ?? "N/A"}
       </div>
     </div>
-  </div>;
+  </div>
 }
