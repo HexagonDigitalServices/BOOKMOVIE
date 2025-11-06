@@ -1,35 +1,56 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+/**
+ * ScrollToTop component:
+ * - Forces an immediate jump to the very top on every navigation.
+ * - If URL has a hash, it will try to jump to that element (also immediately).
+ * - Disables browser's automatic scroll restoration to avoid the browser restoring previous positions.
+ */
+function ScrollToTop() {
+  const location = useLocation();
 
-function App() {
-  const [count, setCount] = useState(0)
+  // Disable browser auto scroll restoration (do once)
+  useEffect(() => {
+    if (typeof window !== "undefined" && "scrollRestoration" in window.history) {
+      try {
+        window.history.scrollRestoration = "manual";
+      } catch (e) {
+        // ignore
+      }
+    }
+  }, []);
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+  useEffect(() => {
+    // If there's a hash (e.g. /page#section), try to jump to that element
+    if (location.hash) {
+      const id = location.hash.replace("#", "");
+      const el = document.getElementById(id) || document.querySelector(location.hash);
+      if (el) {
+        el.scrollIntoView({ behavior: "auto", block: "start", inline: "nearest" });
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+        return;
+      }
+    }
+
+    // Force immediate top-of-page
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+  }, [location.pathname, location.search, location.hash]);
+
+  return null;
 }
 
-export default App
+// Ensure no horizontal overflow on the root document (defensive)
+  useEffect(() => {
+    const prevHtmlOverflowX = document.documentElement.style.overflowX;
+    const prevBodyOverflowX = document.body.style.overflowX;
+
+    document.documentElement.style.overflowX = "hidden";
+    document.body.style.overflowX = "hidden";
+
+    return () => {
+      // restore previous values just in case other scripts rely on them
+      document.documentElement.style.overflowX = prevHtmlOverflowX;
+      document.body.style.overflowX = prevBodyOverflowX;
+    };
+  }, []);
