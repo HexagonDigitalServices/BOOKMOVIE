@@ -1,0 +1,8 @@
+{
+  "fullName": "Hexa",
+  "username": "HDS",
+  "phone": "7894561230",
+  "email": "hexa@gmail.com",
+  "birthDate": "2001-01-25",
+  "password": "7417417410"
+}

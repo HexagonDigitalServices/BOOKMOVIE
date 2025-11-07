@@ -1,0 +1,16 @@
+{ 
+ "type": "normal", 
+ "movieName": "Avengers: Endgame", 
+ "categories": ["AcƟ on", "Sci-Fi"], 
+ "duraƟ on": 180,
+ "seatPrices": { 
+ "standard": 200, 
+ "recliner": 350 
+ }, 
+ "slots": [ 
+ { "date": "2025-11-07", "Ɵ me": "07:30", "ampm": "PM" },
+ { "date": "2025-11-08", "Ɵ me": "10:30", "ampm": "AM" }
+ ], 
+ "auditorium": "Audi 1", 
+ "story": "AŌ er the devastaƟ ng events of Infinity War, the Avengers assemble once more."
+}

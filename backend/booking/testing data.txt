@@ -1,0 +1,38 @@
+{ 
+ "customer": "HDS", 
+ "movieId": "68f4953f2259914bfc45fce4", 
+ "movie": { 
+ "Ɵ tle": "Fast",
+ "poster": "hƩ p://localhost:5000/uploads/movie-1760859455881-27966.png", 
+ "duraƟ onMins": 160,
+ "category": "AcƟ on",
+ "year": null, 
+ "raƟ ng": 8.8
+ }, 
+ "showƟ me": "2025-10-19T07:30:00.000+00:00", 
+ "auditorium": "Audi 1", 
+ "seats": [ 
+ { "seatId": "C1", "type": "standard", "price": 900 }, 
+ { "seatId": "C2", "type": "standard", "price": 900 }, 
+ { "seatId": "D1", "type": "recliner", "price": 1350 }, 
+ { "seatId": "D2", "type": "recliner", "price": 1350 } 
+ ], 
+ "basePrice": 900, 
+ "amount": 4500, 
+ "amountPaise": 450000, 
+ "currency": "INR", 
+ "status": "confirmed", 
+ "paymentStatus": "paid", 
+ "paymentMethod": "card", 
+ "paymentSessionId": 
+"cs_test_a1jCjQ47yfSG3CSAWbtVLvgOt5wUnKBkpaspkKK5Tr2nADhiRH53YXHITQ", 
+ "paymentIntentId": "pi_3SJvJKRvJk8vUWZM1j2Cqdar", 
+ "stripeSession": { 
+ "id": "cs_test_a1jCjQ47yfSG3CSAWbtVLvgOt5wUnKBkpaspkKK5Tr2nADhiRH53YXHITQ", 
+ "url": 
+"hƩ ps://checkout.stripe.com/c/pay/cs_test_a1jCjQ47yfSG3CSAWbtVLvgOt5wUnKBkpaspkKK5Tr2nA
+DhiRH53YXHITQ" 
+ }, 
+ "createdAt": "2025-10-19T12:01:58.445+00:00", 
+ "updatedAt": "2025-10-19T12:02:10.853+00:00" 
+}
