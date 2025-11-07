@@ -212,3 +212,14 @@ const normalizeItemForOutput = (it = {}) => {
       obj.duration = obj.duration || lt.duration || null;
       obj.description = obj.description || lt.description || lt.excerpt || obj.description || "";
     }
+
+// delete
+    // unlink person files
+    [(m.cast || []), (m.directors || []), (m.producers || [])].forEach(arr =>
+      arr.forEach(p => { if (p && p.file) tryUnlinkUploadUrl(p.file); })
+    );
+
+    if (m.latestTrailer) {
+      ([...(m.latestTrailer.directors || []), ...(m.latestTrailer.producers || []), ...(m.latestTrailer.singers || [])])
+        .forEach(p => { if (p && p.file) tryUnlinkUploadUrl(p.file); });
+    }
