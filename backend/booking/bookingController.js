@@ -333,3 +333,15 @@ export async function getOccupiedSeats(req, res) {
     return res.status(500).json({ success: false, message: "Server error while fetching occupied seats", error: String(err.message || err) });
   }
 }
+
+// confirm payment 
+    const bookingId = sessionObj.metadata?.bookingId;
+    if (!bookingId || !mongoose.Types.ObjectId.isValid(bookingId)) {
+      return res.status(400).json({ success: false, message: "Invalid bookingId in session metadata" });
+    }
+
+    const booking = await Booking.findByIdAndUpdate(bookingId, {
+      paymentStatus: "paid",
+      status: "confirmed",
+      paymentIntentId: sessionObj.payment_intent || ""
+    }, { new: true }).exec();

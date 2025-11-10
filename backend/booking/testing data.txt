@@ -2,14 +2,14 @@
  "customer": "HDS", 
  "movieId": "68f4953f2259914bfc45fce4", 
  "movie": { 
- "Ɵ tle": "Fast",
+ "title": "Fast",
  "poster": "hƩ p://localhost:5000/uploads/movie-1760859455881-27966.png", 
- "duraƟ onMins": 160,
+ "durationMins": 160,
  "category": "AcƟ on",
  "year": null, 
- "raƟ ng": 8.8
+ "rating": 8.8
  }, 
- "showƟ me": "2025-10-19T07:30:00.000+00:00", 
+ "showtime": "2025-10-19T07:30:00.000+00:00", 
  "auditorium": "Audi 1", 
  "seats": [ 
  { "seatId": "C1", "type": "standard", "price": 900 }, 
@@ -30,8 +30,7 @@
  "stripeSession": { 
  "id": "cs_test_a1jCjQ47yfSG3CSAWbtVLvgOt5wUnKBkpaspkKK5Tr2nADhiRH53YXHITQ", 
  "url": 
-"hƩ ps://checkout.stripe.com/c/pay/cs_test_a1jCjQ47yfSG3CSAWbtVLvgOt5wUnKBkpaspkKK5Tr2nA
-DhiRH53YXHITQ" 
+"hƩ ps://checkout.stripe.com/c/pay/cs_test_a1jCjQ47yfSG3CSAWbtVLvgOt5wUnKBkpaspkKK5Tr2nADhiRH53YXHITQ" 
  }, 
  "createdAt": "2025-10-19T12:01:58.445+00:00", 
  "updatedAt": "2025-10-19T12:02:10.853+00:00" 
