@@ -47,11 +47,6 @@ export default function AddMoviePage() {
   // uploading indicator
   const [isUploading, setIsUploading] = useState(false);
 
-  useEffect(() => {
-    const total =
-      (Number(durationHours) || 0) * 60 + (Number(durationMinutes) || 0);
-    setDuration(total);
-  }, [durationHours, durationMinutes]);
 
   const availableCategories = ["Action", "Horror", "Comedy", "Adventure"];
 
