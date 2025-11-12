@@ -1,97 +1,118 @@
 // src/assets/dummyStyles.js
-export const styles = {
+// Add these to your existing assets/dummyStyles.js
+
+export const addMoviePageStyles = {
   // Layout and container styles
   pageContainer: "min-h-screen p-4 sm:p-6 bg-gradient-to-b from-black via-gray-900 to-gray-800 text-gray-100",
   mainContainer: "max-w-6xl mx-auto bg-gradient-to-r from-black via-red-900 to-black/80 border-2 border-red-700 rounded-2xl p-4 sm:p-6 md:p-8 shadow-2xl",
   
-  // Header styles
-  headerContainer: "flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 gap-4",
-  headerTitle: "text-2xl sm:text-3xl md:text-4xl font-bold",
+  // Header
+  header: "flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 gap-4",
+  title: "text-2xl sm:text-3xl md:text-4xl font-bold",
+  titleIcon: "inline-block mr-2 -translate-y-1",
   
-  // Form styles
-  formContainer: "space-y-6",
+  // Form
+  form: "space-y-6",
   radioContainer: "flex flex-col sm:flex-row sm:flex-wrap gap-3 lg:gap-4",
   radioLabel: "flex items-center gap-2",
   radioInput: "accent-red-600",
   
-  // Section styles
-  sectionContainer: "bg-black/20 p-4 rounded-lg border border-red-700",
+  // Sections
+  section: "bg-black/20 p-4 rounded-lg border border-red-700",
+  sectionGrid: "grid grid-cols-1 sm:grid-cols-2 gap-4",
+  sectionTitle: "font-semibold",
+  
+  // Input fields
+  inputContainer: "",
+  label: "block text-sm mb-2",
+  input: "w-full rounded-lg p-3 bg-black/20 border border-red-600 placeholder-gray-400",
+  textarea: "w-full rounded-lg p-3 bg-black/20 border border-red-600",
+  numberInput: "w-32 rounded-lg p-2 bg-black/20 border border-red-600",
+  select: "w-full rounded-lg p-2 bg-black/20 border border-red-600",
+  
+  // Category buttons
+  categoryContainer: "flex gap-3 flex-wrap",
+  categoryButton: "px-3 py-1 rounded-full border",
+  categoryButtonSelected: "bg-red-700 text-white border-red-700",
+  categoryButtonNormal: "bg-black/20 border-gray-700",
+  
+  // File upload areas
+  uploadContainer: "border-2 border-dashed border-red-700 rounded-lg p-3 bg-black/30",
+  uploadContent: "flex flex-col items-center justify-center gap-2 cursor-pointer",
+  uploadIconContainer: "p-4 rounded-md bg-black/40 border border-red-700",
+  uploadIcon: "size-36",
+  uploadText: "text-xs opacity-80",
+  uploadInput: "hidden",
+  
+  // Preview images
+  previewContainer: "relative",
+  previewImage: "w-full h-48 object-contain rounded-md",
+  previewThumbnail: "w-full h-40 sm:h-48 object-contain rounded-md",
+  removeButton: "absolute -top-2 right-2 bg-red-700/90 p-1 rounded-full",
+  removeIcon: "size-6",
   
   // Grid layouts
   gridCols1: "grid grid-cols-1 gap-4",
-  gridCols1Sm2: "grid grid-cols-1 sm:grid-cols-2 gap-4",
-  gridCols1Md3: "grid grid-cols-1 md:grid-cols-3 gap-4",
-  gridCols1Sm2Md3: "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4",
+  gridCols2: "grid grid-cols-1 sm:grid-cols-2 gap-4",
+  gridCols3: "grid grid-cols-1 sm:grid-cols-3 gap-4",
+  gridCols2Md3: "sm:col-span-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4",
   
-  // Input styles
-  inputContainer: "block text-sm mb-2",
-  inputField: "w-full rounded-lg p-3 bg-black/20 border border-red-600",
-  inputFieldSmall: "w-full rounded-lg p-2 bg-black/20 border border-red-600",
-  inputNumber: "w-28 rounded-lg p-2 bg-black/20 border border-red-600",
-  textarea: "w-full rounded-lg p-3 bg-black/20 border border-red-600",
-  select: "w-full rounded-lg p-2 bg-black/20 border border-red-600",
+  // Duration controls
+  durationContainer: "flex gap-3 flex-wrap",
+  durationInput: "w-32 rounded-lg p-2 bg-black/20 border border-red-600",
   
-  // Button styles
-  categoryButton: (isSelected) => 
-    `px-3 py-1 rounded-full border ${
-      isSelected 
-        ? "bg-red-700 text-white border-red-700" 
-        : "bg-black/20 border-gray-700"
-    }`,
-  addButton: "flex items-center gap-2 px-3 py-1 rounded-full bg-red-700 text-sm",
-  removeButton: "p-2 rounded-full bg-red-700",
-  actionButton: "px-4 py-2 rounded-lg border border-red-700 w-full sm:w-auto",
-  submitButton: "px-6 py-2 rounded-lg bg-red-700 font-semibold w-full sm:w-auto",
-  fileUploadButton: "text-xs px-3 py-1 bg-red-700 rounded-full cursor-pointer",
-  
-  // Upload container styles
-  uploadContainer: "border-2 border-dashed border-red-700 rounded-lg p-3 bg-black/30",
-  uploadPlaceholder: "flex flex-col items-center justify-center gap-2 cursor-pointer",
-  uploadIconContainer: "p-4 rounded-md bg-black/40 border border-red-700",
-  uploadText: "text-xs opacity-80",
-  
-  // Preview styles
-  previewContainer: "relative",
-  previewImage: "w-full h-48 object-cover rounded-md",
-  previewImageContain: "w-full h-40 sm:h-48 object-contain rounded-md",
-  previewRemoveButton: "absolute top-2 right-2 bg-red-700/90 p-1 rounded-full",
-  
-  // Named uploader styles
-  namedUploaderContainer: "p-3 bg-black/20 rounded-lg border border-red-700",
-  namedUploaderHeader: "flex items-center justify-between mb-2",
-  namedUploaderTitle: "flex items-center gap-2 font-semibold",
-  namedUploaderGrid: "grid grid-cols-1 gap-3",
-  namedItemContainer: "relative flex gap-2 items-center bg-black/30 p-2 rounded-md",
-  namedItemImage: "w-20 h-20 object-cover rounded-md",
-  namedItemInput: "w-full rounded-lg p-2 bg-black/20 border border-gray-700 mb-2",
-  namedItemFileText: "text-xs opacity-80",
-  
-  // Slots styles
-  slotsContainer: "space-y-3",
+  // Slots section
+  slotsHeader: "flex items-center justify-between mb-3",
+  addSlotButton: "flex items-center gap-2 px-3 py-1 rounded-full bg-red-700 text-sm",
+  addSlotIcon: "",
   slotItem: "flex gap-3 items-center flex-col sm:flex-row",
   slotGrid: "flex-1 grid grid-cols-1 sm:grid-cols-3 gap-2 w-full",
   slotInput: "p-2 rounded-lg bg-black/20 border border-gray-700 w-full",
+  slotRemoveButton: "p-2 rounded-full bg-red-700",
   
-  // Uploader component styles
+  // Uploader components
   uploaderContainer: "p-3 bg-black/20 rounded-lg border border-red-700",
   uploaderHeader: "flex items-center justify-between mb-2",
+  uploaderTitle: "flex items-center gap-2",
+  uploaderTitleText: "font-semibold",
+  uploaderAddButton: "text-xs px-3 py-1 bg-red-700 rounded-full cursor-pointer",
+  uploaderAddInput: "hidden",
   uploaderGrid: "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2",
+  uploaderEmpty: "col-span-1 sm:col-span-2 md:col-span-3 text-sm opacity-80",
+  
+  // Uploader items
   uploaderItem: "relative bg-black/30 p-2 rounded-md",
-  uploaderItemImage: "w-full h-36 sm:h-40 md:h-28 object-cover rounded-md",
-  uploaderMetaInput: "w-full rounded-md p-1 text-sm bg-black/10 border border-gray-700",
+  uploaderItemImage: "w-full h-36 sm:h-40 md:h-28 object-contain rounded-md",
+  uploaderItemRemove: "absolute -top-1 -right-2 bg-red-700 p-1 rounded-full",
+  uploaderItemRemoveIcon: "size-6",
+  uploaderItemInput: "w-full rounded-md p-1 text-sm bg-black/10 border border-gray-700",
   
-  // Flex layouts
-  flexWrap: "flex gap-3 flex-wrap",
-  flexCenter: "flex items-center gap-2",
-  flexCenterGap3: "flex items-center gap-3",
-  flexCol: "flex flex-col items-center justify-center gap-2",
-  flexRow: "flex gap-3 justify-end flex-col sm:flex-row",
+  // Named uploader
+  namedUploaderGrid: "grid grid-cols-1 gap-3",
+  namedUploaderItem: "relative flex gap-2 items-center bg-black/30 p-2 rounded-md",
+  namedUploaderImage: "w-20 h-20 object-cover rounded-md",
+  namedUploaderInput: "w-full rounded-lg p-2 bg-black/20 border border-gray-700 mb-2",
+  namedUploaderFileName: "text-xs opacity-80",
   
-  // Text styles
-  noItemsText: "text-sm opacity-80",
-  colSpanText: "col-span-1 sm:col-span-2 md:col-span-3 text-sm opacity-80"
+  // Form actions
+  actionsContainer: "flex gap-3 justify-end flex-col sm:flex-row",
+  resetButton: "px-4 py-2 rounded-lg border border-red-700 w-full sm:w-auto",
+  submitButton: "px-6 py-2 rounded-lg bg-red-700 font-semibold w-full sm:w-auto",
+  
+  // Icon sizes
+  iconSm: "size-16",
+  iconMd: "size-14",
+  iconLg: "size-36"
 };
 
+// Custom styles for AddMoviePage
+export const addMoviePageCustomStyles = `
+  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Dancing+Script&display=swap');
+  
+  .font-cinzel {
+    font-family: 'Cinzel', serif;
+  }
+`;
 // src/assets/dummyStyles.js
 
 export const styles2 = {
