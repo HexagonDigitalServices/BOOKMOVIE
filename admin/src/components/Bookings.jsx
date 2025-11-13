@@ -168,8 +168,4 @@ export default function Bookings() {
       : bookings;
     return filtered;
   }, [selectedMovie, bookings]);
-
-  const clearFilter = () => {
-    setSelectedMovie("");
-  };
-
+  
