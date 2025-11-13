@@ -16,7 +16,7 @@ const fmtINR = (n) =>
     ? `₹${n.toLocaleString("en-IN", { maximumFractionDigits: 0 })}`
     : "₹0";
 
-export default function Bookings() {
+
   const [selectedMovie, setSelectedMovie] = useState("");
   const [bookings, setBookings] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -168,4 +168,3 @@ export default function Bookings() {
       : bookings;
     return filtered;
   }, [selectedMovie, bookings]);
-  
