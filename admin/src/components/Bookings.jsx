@@ -176,3 +176,12 @@ function getStoredToken() {
       : bookings;
     return filtered;
   }, [selectedMovie, bookings]);
+
+
+        {loading && (
+            <div className={styles2.messageContainer}>Loading bookings…</div>
+          )}
+
+          {!loading && bookingsToShow.length === 0 && (
+            <div className={styles2.messageContainer}>No paid bookings.</div>
+          )}
