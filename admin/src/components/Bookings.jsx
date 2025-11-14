@@ -16,6 +16,14 @@ const fmtINR = (n) =>
     ? `₹${n.toLocaleString("en-IN", { maximumFractionDigits: 0 })}`
     : "₹0";
 
+function getStoredToken() {
+  return (
+    localStorage.getItem("token") ||
+    localStorage.getItem("authToken") ||
+    localStorage.getItem("accessToken") ||
+    null
+  );
+}
 
   const [selectedMovie, setSelectedMovie] = useState("");
   const [bookings, setBookings] = useState([]);
