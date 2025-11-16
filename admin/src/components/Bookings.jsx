@@ -16,6 +16,14 @@ const fmtINR = (n) =>
     ? `₹${n.toLocaleString("en-IN", { maximumFractionDigits: 0 })}`
     : "₹0";
 
+function getStoredToken() {
+  return (
+    localStorage.getItem("token") ||
+    localStorage.getItem("authToken") ||
+    localStorage.getItem("accessToken") ||
+    null
+  );
+}
 
   const [selectedMovie, setSelectedMovie] = useState("");
   const [bookings, setBookings] = useState([]);
@@ -168,3 +176,12 @@ const fmtINR = (n) =>
       : bookings;
     return filtered;
   }, [selectedMovie, bookings]);
+
+
+        {loading && (
+            <div className={styles2.messageContainer}>Loading bookings…</div>
+          )}
+
+          {!loading && bookingsToShow.length === 0 && (
+            <div className={styles2.messageContainer}>No paid bookings.</div>
+          )}
