@@ -58,18 +58,3 @@ catch (err) {
           }
         }
       }
-
-
-  // filter by category (case-insensitive)
-  const filteredMovies = React.useMemo(() => {
-    if (activeCategory === "all") return movies;
-    return movies.filter(
-      (m) =>
-        String(m.category || "").toLowerCase() ===
-        String(activeCategory || "").toLowerCase()
-    );
-  }, [movies, activeCategory]);
-
-  const visibleMovies = showAll
-    ? filteredMovies
-    : filteredMovies.slice(0, COLLAPSE_COUNT);
