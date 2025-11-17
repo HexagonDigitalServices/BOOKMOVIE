@@ -33,3 +33,43 @@ const mapBackendMovie = (m) => {
 
   return { id, title, image, category, raw: m };
 };
+
+
+catch (err) {
+        if (err.name === "AbortError") return;
+        console.error("Failed to load movies:", err);
+        // fallback: try a generic fetch for any movies
+        try {
+          const res2 = await fetch(`${API_BASE}/api/movies?limit=200`);
+          if (!res2.ok) throw new Error(`Fallback HTTP ${res2.status}`);
+          const json2 = await res2.json();
+          const items2 = Array.isArray(json2.items) ? json2.items : [];
+          const mapped2 = items2.map(mapBackendMovie);
+          if (mounted) {
+            setMovies(mapped2);
+            setLoading(false);
+          }
+        } catch (err2) {
+          if (err2.name === "AbortError") return;
+          console.error("Movies fallback failed:", err2);
+          if (mounted) {
+            setError("Unable to load movies.");
+            setLoading(false);
+          }
+        }
+      }
+
+
+  // filter by category (case-insensitive)
+  const filteredMovies = React.useMemo(() => {
+    if (activeCategory === "all") return movies;
+    return movies.filter(
+      (m) =>
+        String(m.category || "").toLowerCase() ===
+        String(activeCategory || "").toLowerCase()
+    );
+  }, [movies, activeCategory]);
+
+  const visibleMovies = showAll
+    ? filteredMovies
+    : filteredMovies.slice(0, COLLAPSE_COUNT);
