@@ -368,4 +368,55 @@ export default function BookingsPage() {
                   </div>
                 </article>
               );
-         
+
+
+{scannedDetails && (
+        <div
+          className={bookingsPageStyles.modalOverlay}
+          aria-modal="true"
+          role="dialog"
+        >
+          <div
+            className={bookingsPageStyles.modalBackdrop}
+            onClick={closeModal}
+            aria-hidden="true"
+          />
+          <div className={bookingsPageStyles.modalContent}>
+            <div className={bookingsPageStyles.modalHeader}>
+              <div>
+                <h3 className={bookingsPageStyles.modalTitle}>
+                  {scannedDetails.title}
+                </h3>
+                <div className={bookingsPageStyles.modalBookingId}>
+                  Booking ID:{" "}
+                  <span className={bookingsPageStyles.modalIdText}>
+                    {scannedDetails.bookingId}
+                  </span>
+                </div>
+                <div className={bookingsPageStyles.modalDetails}>
+                  <div>
+                    <strong>Time:</strong> {scannedDetails.time}
+                  </div>
+                  <div>
+                    <strong>Auditorium:</strong> {scannedDetails.auditorium}
+                  </div>
+                  <div className="mt-2">
+                    <strong>Seats:</strong>{" "}
+                    {Array.isArray(scannedDetails.seats)
+                      ? scannedDetails.seats.join(", ")
+                      : scannedDetails.seats}
+                  </div>
+                </div>
+              </div>
+
+              <button
+                onClick={closeModal}
+                className={bookingsPageStyles.modalCloseButton}
+                aria-label="Close scanned details"
+              >
+                <X className={bookingsPageStyles.modalCloseIcon} />
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
