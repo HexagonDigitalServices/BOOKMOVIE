@@ -1,22 +1,4 @@
-// src/pages/BookingsPage.jsx
-import React, { useEffect, useState } from "react";
-import { Film, Clock, MapPin, QrCode, ChevronDown, X } from "lucide-react";
-import QRCode from "qrcode";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import { bookingsPageStyles, formatTime, formatDuration } from "../../assets/dummyStyles";
-
 // API base
-const API_BASE = "http://localhost:5000";
-
-function getStoredToken() {
-  return (
-    localStorage.getItem("token") ||
-    localStorage.getItem("authToken") ||
-    localStorage.getItem("accessToken") ||
-    null
-  );
-}
 
 export default function BookingsPage() {
   const [bookings, setBookings] = useState([]);
@@ -85,31 +67,8 @@ export default function BookingsPage() {
 
   // fetch user's bookings (try /api/bookings/my then fallback to /api/bookings)
   useEffect(() => {
-    let mounted = true;
-    async function fetchMyBookings() {
-      setLoading(true);
-      setError("");
       try {
-        const token = getStoredToken();
-        if (!token) {
-          navigate("/login");
-          return;
-        }
 
-        // try preferred endpoint first
-        let res;
-        try {
-          res = await axios.get(`${API_BASE}/api/bookings/my`, {
-            headers: { Authorization: `Bearer ${token}` },
-            timeout: 15000,
-          });
-        } catch (err) {
-          // fallback: try /api/bookings with auth header (server might return user's bookings)
-          res = await axios.get(`${API_BASE}/api/bookings`, {
-            headers: { Authorization: `Bearer ${token}` },
-            timeout: 15000,
-          });
-        }
 
         const data = res?.data || {};
         let items = [];
@@ -237,8 +196,6 @@ export default function BookingsPage() {
     };
   }, [bookings]);
 
-  const toggle = (id) => setExpanded((prev) => ({ ...prev, [id]: !prev[id] }));
-
   const handleQrScan = (bookingId) => {
     const entry = qrs[bookingId];
     if (!entry || !entry.payload) return;
@@ -254,37 +211,8 @@ export default function BookingsPage() {
     }
   };
 
-  const closeModal = () => setScannedDetails(null);
 
-  return (
-    <div className={bookingsPageStyles.pageContainer}>
-      <div className={bookingsPageStyles.mainContainer}>
-        <header className={bookingsPageStyles.header}>
-          <h1 className={bookingsPageStyles.title}>
-            Your Tickets
-          </h1>
-          <div className={bookingsPageStyles.subtitle}>Present QR at entry</div>
-        </header>
 
-        {loading && (
-          <div className={bookingsPageStyles.loading}>
-            Loading bookings…
-          </div>
-        )}
-
-        {!loading && error && (
-          <div className={bookingsPageStyles.error}>{error}</div>
-        )}
-
-        <div className={bookingsPageStyles.grid}>
-          {bookings.length === 0 && !loading ? (
-            <div className={bookingsPageStyles.noBookings}>
-              No bookings found.
-            </div>
-          ) : (
-            bookings.map((b) => {
-              const totals = computeTotals(b);
-              const isOpen = !!expanded[b.id];
 
               return (
                 <article
@@ -440,61 +368,4 @@ export default function BookingsPage() {
                   </div>
                 </article>
               );
-            })
-          )}
-        </div>
-      </div>
-
-      {scannedDetails && (
-        <div
-          className={bookingsPageStyles.modalOverlay}
-          aria-modal="true"
-          role="dialog"
-        >
-          <div
-            className={bookingsPageStyles.modalBackdrop}
-            onClick={closeModal}
-            aria-hidden="true"
-          />
-          <div className={bookingsPageStyles.modalContent}>
-            <div className={bookingsPageStyles.modalHeader}>
-              <div>
-                <h3 className={bookingsPageStyles.modalTitle}>
-                  {scannedDetails.title}
-                </h3>
-                <div className={bookingsPageStyles.modalBookingId}>
-                  Booking ID:{" "}
-                  <span className={bookingsPageStyles.modalIdText}>
-                    {scannedDetails.bookingId}
-                  </span>
-                </div>
-                <div className={bookingsPageStyles.modalDetails}>
-                  <div>
-                    <strong>Time:</strong> {scannedDetails.time}
-                  </div>
-                  <div>
-                    <strong>Auditorium:</strong> {scannedDetails.auditorium}
-                  </div>
-                  <div className="mt-2">
-                    <strong>Seats:</strong>{" "}
-                    {Array.isArray(scannedDetails.seats)
-                      ? scannedDetails.seats.join(", ")
-                      : scannedDetails.seats}
-                  </div>
-                </div>
-              </div>
-
-              <button
-                onClick={closeModal}
-                className={bookingsPageStyles.modalCloseButton}
-                aria-label="Close scanned details"
-              >
-                <X className={bookingsPageStyles.modalCloseIcon} />
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-    </div>
-  );
-}
+         
