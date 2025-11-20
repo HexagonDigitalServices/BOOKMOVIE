@@ -1,3 +1,4 @@
+// src/pages/MovieDetailPage.jsx
 import React, { useMemo, useEffect, useState } from "react";
 import { useParams, Link, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
@@ -12,7 +13,7 @@ import {
   User,
 } from "lucide-react";
 import { toast } from "react-toastify";
-import { movieDetailHStyles } from "../../assets/dummyStyles";
+import { movieDetailHStyles } from "../assets/dummyStyles";
 
 const API_BASE = "http://localhost:5000";
 
@@ -33,6 +34,53 @@ const FallbackAvatar = ({ className = "w-12 h-12" }) => (
     ?
   </div>
 );
+
+// Function to format duration to hours and minutes
+const formatDuration = (duration) => {
+  if (!duration) return "N/A";
+  
+  // If it's already in "Xh Ym" format, return as is
+  if (typeof duration === 'string' && /^\d+h\s*\d*m?$/.test(duration)) {
+    return duration;
+  }
+  
+  // If it's a number (in minutes), convert to hours and minutes
+  if (typeof duration === 'number') {
+    const hours = Math.floor(duration / 60);
+    const minutes = duration % 60;
+    return `${hours}h ${minutes}m`;
+  }
+  
+  // If it's a string that might contain numbers, try to parse
+  if (typeof duration === 'string') {
+    // Try to extract numbers for minutes
+    const minutesMatch = duration.match(/(\d+)\s*min/);
+    if (minutesMatch) {
+      const totalMinutes = parseInt(minutesMatch[1]);
+      const hours = Math.floor(totalMinutes / 60);
+      const minutes = totalMinutes % 60;
+      return `${hours}h ${minutes}m`;
+    }
+    
+    // Try to extract hours and minutes separately
+    const hoursMatch = duration.match(/(\d+)\s*h/);
+    const minsMatch = duration.match(/(\d+)\s*m/);
+    
+    if (hoursMatch && minsMatch) {
+      return `${hoursMatch[1]}h ${minsMatch[1]}m`;
+    } else if (hoursMatch) {
+      return `${hoursMatch[1]}h 0m`;
+    } else if (minsMatch) {
+      const totalMinutes = parseInt(minsMatch[1]);
+      const hours = Math.floor(totalMinutes / 60);
+      const minutes = totalMinutes % 60;
+      return `${hours}h ${minutes}m`;
+    }
+  }
+  
+  // Return original if no formatting could be applied
+  return duration;
+};
 
 function extractYouTubeId(urlOrId) {
   if (!urlOrId) return null;
@@ -417,6 +465,9 @@ export default function MovieDetailPage() {
       (producer.file ? getImageUrl(producer.file) : null)
     : null;
 
+  // Format the duration for display
+  const formattedDuration = formatDuration(movie.duration ?? movie.runtime);
+
   return (
     <div className={movieDetailHStyles.pageContainer}>
       {showTrailer && selectedTrailerId && (
@@ -472,7 +523,7 @@ export default function MovieDetailPage() {
             </span>
             <span className={movieDetailHStyles.duration}>
               <Clock className={movieDetailHStyles.durationIcon} />
-              {movie.duration ?? movie.runtime ?? "N/A"}
+              {formattedDuration}
             </span>
             <span className={movieDetailHStyles.genre}>
               {categoryList.length ? categoryList.join(", ") : "—"}
